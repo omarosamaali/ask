@@ -47,7 +47,7 @@ class FaqController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'stage' => 'required|string|max:255',
-            'question' => 'required|string|max:255',
+            'question' => 'required|string',
             'answer' => 'required|string',
             'status' => 'required|boolean',
             'sub_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
@@ -83,7 +83,7 @@ class FaqController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'stage' => 'required|string|max:255',
-            'question' => 'required|string|max:255',
+            'question' => 'required|string',
             'answer' => 'required|string',
             'status' => 'required|boolean',
             'sub_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
