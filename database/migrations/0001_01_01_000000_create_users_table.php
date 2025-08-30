@@ -15,26 +15,11 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
-            $table->string('name_ar')->nullable();
-            $table->string('name_en')->nullable();
             $table->string('email')->unique();
-            $table->enum('role', ['مدير', 'موظف استقبال', 'أمين الصندوق', 'عضو', 'مدخل بيانات'])->default('مدخل بيانات');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('is_contract_signed')->default(false);
-            $table->string('otp_code')->nullable();
-            $table->timestamp('otp_expires_at')->nullable();
-            $table->timestamp('contract_signed_at')->nullable();
             $table->string('password');
-            $table->enum('status', ['فعال', 'غير فعال', 'بانتظار التفعيل', 'بإنتظار إستكمال البيانات'])->default('فعال');
+            $table->enum('status', ['0', '1'])->default('0');
             $table->rememberToken();
-
             $table->timestamps();
-        });
-
-        Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
         });
 
         Schema::create('sessions', function (Blueprint $table) {

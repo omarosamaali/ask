@@ -14,20 +14,23 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'Omar Osama',
-            'name_ar' => 'عمر أسامة',
-            'name_en' => 'Omar Osama',
-            'email' => 'dev@dev.com',
-            'password' => '123456789',
-            'role' => 'مدير'
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' =>  bcrypt('123456789'),
+            'status' => '0'
         ]);
 
-        // $this->call(AboutUsSeeder::class);
-        // $this->call(MemberSeeder::class);
-        // $this->call(CommitteeSeeder::class);
-        // $this->call(CouncilSeeder::class);
-        // $this->call(MagazineSeeder::class);
-        // $this->call(ServiceSeeder::class);
-        // $this->call(SettingSeeder::class);
+        User::factory()->create([
+            'name' => 'Tarek',
+            'email' => 'coder3rb@gmail.com',
+            'password' =>  bcrypt('123456789'),
+            'status' => '0'
+        ]);
+
+
+        $this->call([
+            FaqSeeder::class,
+            // أضف seeders أخرى هنا
+        ]);
     }
 }

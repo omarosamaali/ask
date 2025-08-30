@@ -6,14 +6,35 @@ use App\Http\Controllers\Controller;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Stichoza\GoogleTranslate\GoogleTranslate;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class FaqController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $faqs = Faq::orderBy('order')->get();
+        $query = Faq::query();
+
+        // البحث في السؤال والإجابة
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('question', 'LIKE', "%{$search}%")
+                    ->orWhere('answer', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // فلتر بناءً على المرحلة
+        if ($request->filled('stage') && $request->stage !== '') {
+            $query->where('stage', $request->stage);
+        }
+
+        // فلتر بناءً على الحالة
+        if ($request->filled('status') && $request->status !== '') {
+            $query->where('status', $request->status);
+        }
+
+        $faqs = $query->latest()->get();
+
         return view('admin.faqs.index', compact('faqs'));
     }
 
@@ -25,35 +46,32 @@ class FaqController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'question_ar' => 'required|string|max:255',
-            'answer_ar' => 'required|string',
+            'stage' => 'required|string|max:255',
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
             'status' => 'required|boolean',
-            'order' => 'required|integer|min:0',
+            'sub_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $data = $request->only(['question_ar', 'answer_ar', 'status', 'order']);
+        $data = $request->only(['question', 'answer', 'status', 'stage']);
 
-        $tr = new GoogleTranslate('ar');
-
-        foreach ($this->targetLanguages as $code => $name) {
-            $questionColumn = 'question_' . $code;
-            $answerColumn = 'answer_' . $code;
-            try {
-                if (in_array($questionColumn, (new Faq())->getFillable()) && in_array($answerColumn, (new Faq())->getFillable())) {
-                    $data[$questionColumn] = $tr->setTarget($code)->translate($request->input('question_ar'));
-                    $data[$answerColumn] = $tr->setTarget($code)->translate($request->input('answer_ar'));
-                } else {
-                    Log::warning("Column {$questionColumn} or {$answerColumn} not found in Faq model fillable. Skipping translation for this column.");
+        if ($request->hasFile('sub_images')) {
+            $images = [];
+            foreach ($request->file('sub_images') as $image) {
+                try {
+                    $path = $image->store('faqs', 'public');
+                    $images[] = $path;
+                } catch (\Exception $e) {
+                    return redirect()->back()->with('error', 'فشل تحميل الصورة: ' . $e->getMessage());
                 }
-            } catch (\Exception $e) {
-                $data[$questionColumn] = null;
-                $data[$answerColumn] = null;
-                Log::error("Translation failed for {$code} (Faq Store): " . $e->getMessage());
             }
+            $data['images'] = json_encode($images);
+        } else {
+            $data['images'] = json_encode([]); // Initialize empty array if no images
         }
 
         Faq::create($data);
@@ -61,59 +79,71 @@ class FaqController extends Controller
         return redirect()->route('admin.faqs.index')->with('success', 'تم إضافة السؤال بنجاح');
     }
 
-    public function show(Faq $faq)
-    {
-        $targetLanguages = $this->targetLanguages;
-        return view('admin.faqs.show', compact('faq', 'targetLanguages'));
-    }
-
-    public function edit(Faq $faq)
-    {
-        $targetLanguages = $this->targetLanguages;
-        return view('admin.faqs.edit', compact('faq', 'targetLanguages'));
-    }
-
     public function update(Request $request, Faq $faq)
     {
         $validator = Validator::make($request->all(), [
-            'question_ar' => 'required|string|max:255',
-            'answer_ar' => 'required|string',
+            'stage' => 'required|string|max:255',
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
             'status' => 'required|boolean',
-            'order' => 'required|integer|min:0',
+            'sub_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $data = $request->only(['question_ar', 'answer_ar', 'status', 'order']);
+        $data = $request->only(['question', 'answer', 'status', 'stage']);
 
-        $tr = new GoogleTranslate('ar');
+        $existingImages = is_array($faq->images) ? $faq->images : [];
+        $deletedImages = json_decode($request->input('deleted_images', '[]'), true) ?? [];
 
-        foreach ($this->targetLanguages as $code => $name) {
-            $questionColumn = 'question_' . $code;
-            $answerColumn = 'answer_' . $code;
-            try {
-                if (in_array($questionColumn, (new Faq())->getFillable()) && in_array($answerColumn, (new Faq())->getFillable())) {
-                    $data[$questionColumn] = $tr->setTarget($code)->translate($request->input('question_ar'));
-                    $data[$answerColumn] = $tr->setTarget($code)->translate($request->input('answer_ar'));
-                } else {
-                    Log::warning("Column {$questionColumn} or {$answerColumn} not found in Faq model fillable. Skipping translation for this column.");
+        if (!empty($deletedImages)) {
+            foreach ($deletedImages as $imagePath) {
+                if (Storage::disk('public')->exists($imagePath) && str_starts_with($imagePath, 'faqs/')) {
+                    Storage::disk('public')->delete($imagePath);
                 }
-            } catch (\Exception $e) {
-                $data[$questionColumn] = null;
-                $data[$answerColumn] = null;
-                Log::error("Translation failed for {$code} (Faq Update): " . $e->getMessage());
             }
         }
 
+        $updatedImages = array_values(array_diff($existingImages, $deletedImages));
+
+        if ($request->hasFile('sub_images')) {
+            foreach ($request->file('sub_images') as $image) {
+                try {
+                    $path = $image->store('faqs', 'public');
+                    $updatedImages[] = $path;
+                } catch (\Exception $e) {
+                    return redirect()->back()->with('error', 'فشل تحميل الصورة: ' . $e->getMessage());
+                }
+            }
+        }
+
+        $data['images'] = json_encode($updatedImages);
         $faq->update($data);
 
         return redirect()->route('admin.faqs.index')->with('success', 'تم تحديث السؤال بنجاح');
     }
 
+    public function show(Faq $faq)
+    {
+        return view('admin.faqs.show', compact('faq'));
+    }
+
+    public function edit(Faq $faq)
+    {
+        return view('admin.faqs.edit', compact('faq'));
+    }
+
     public function destroy(Faq $faq)
     {
+        if (is_array($faq->images)) {
+            foreach ($faq->images as $image) {
+                if (Storage::disk('public')->exists($image) && str_starts_with($image, 'faqs/')) {
+                    Storage::disk('public')->delete($image);
+                }
+            }
+        }
         $faq->delete();
         return redirect()->route('admin.faqs.index')->with('success', 'تم حذف السؤال بنجاح');
     }

@@ -117,42 +117,17 @@
 
                 <div class="col-md-6">
                     <div class="detail-item">
-                        <span class="detail-label">الصلاحية:</span>
-                        <select class="form-select" name="role" id="role" required>
-                            <option value="مدير" {{ old('role', $user->role) == 'مدير' ? 'selected' : '' }}>مدير</option>
-                            <option value="موظف استقبال" {{ old('role', $user->role) == 'موظف استقبال' ? 'selected' : '' }}>موظف استقبال</option>
-                            <option value="أمين الصندوق" {{ old('role', $user->role) == 'أمين الصندوق' ? 'selected' : '' }}>أمين الصندوق</option>
-                            <option value="عضو" {{ old('role', $user->role) == 'عضو' ? 'selected' : '' }}>عضو</option>
-                            <option value="مدخل بيانات" {{ old('role', $user->role) == 'مدخل بيانات' ? 'selected' : '' }}>مدخل بيانات</option>
-                        </select>
-                        @error('role')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="detail-item">
                         <span class="detail-label">الحالة:</span>
                         <select class="form-select" name="status" id="status" required>
-                            <option value="فعال" {{ old('status', $user->status) == 'فعال' ? 'selected' : '' }}>فعال
+                            <option value="0" {{ old('status', $user->status) == '0' ? 'selected' : '' }}>فعال
                             </option>
-                            <option value="غير فعال" {{ old('status', $user->status) == 'غير فعال' ? 'selected' : '' }}>غير
+                            <option value="1" {{ old('status', $user->status) == '1' ? 'selected' : '' }}>غير
                                 فعال</option>
-                            <option value="بانتظار التفعيل"
-                                {{ old('status', $user->status) == 'بانتظار التفعيل' ? 'selected' : '' }}>بانتظار التفعيل
-                            </option>
-                            <option value="بإنتظار إستكمال البيانات"
-                                {{ old('status', $user->status) == 'بإنتظار إستكمال البيانات' ? 'selected' : '' }}>بإنتظار
-                                إستكمال البيانات</option>
                         </select>
                         @error('status')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
             </div>
 
             <div class="btn-section mt-4">
@@ -168,44 +143,3 @@
         </form>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const roleSelect = document.getElementById('role');
-            const chefFields = document.getElementById('chef-fields');
-            const contractTypeSelect = document.getElementById(
-            'contract_type_select'); // احصل على عنصر select لنوع التعاقد
-            const subscriptionFields = document.getElementById('subscription-fields'); // احصل على div حقول الاشتراك
-
-            // دالة لتبديل عرض حقول الطاهي
-            function toggleChefFields() {
-                if (roleSelect.value === 'طاه') {
-                    chefFields.style.display = 'block';
-                    toggleSubscriptionFields(); // استدعاء لتبديل حقول الاشتراك عند عرض حقول الطاهي
-                } else {
-                    chefFields.style.display = 'none';
-                    subscriptionFields.style.display = 'none'; // إخفاء حقول الاشتراك إذا لم يكن الدور "طاه"
-                }
-            }
-
-            // دالة لتبديل عرض حقول الاشتراك
-            function toggleSubscriptionFields() {
-                if (contractTypeSelect.value === 'annual_subscription') {
-                    subscriptionFields.style.display = 'block';
-                } else {
-                    subscriptionFields.style.display = 'none';
-                }
-            }
-
-            // استدعاء الدالة عند تحميل الصفحة للحالة الأولية
-            toggleChefFields();
-
-            // إضافة مستمع للأحداث عند تغيير الصلاحية
-            roleSelect.addEventListener('change', toggleChefFields);
-
-            // إضافة مستمع للأحداث عند تغيير نوع التعاقد
-            contractTypeSelect.addEventListener('change', toggleSubscriptionFields);
-        });
-    </script>
-@endpush

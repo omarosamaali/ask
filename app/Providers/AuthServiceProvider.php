@@ -25,13 +25,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('isChef', function (User $user) {
-            return $user->role === 'طاه';
-        });
-        Gate::define('isAdmin', function (User $user) {
-            return $user->role === 'مدير'; 
-        });
-
         ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
             return route('auth/reset-password.get', [
                 'token' => $token,

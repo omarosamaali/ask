@@ -10,14 +10,12 @@ return new class extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->id();
-            $table->string('question_ar');
-            $table->text('answer_ar');
-            $table->string('question_en')->nullable();
-            $table->text('answer_en')->nullable();
+            $table->string('stage');
+            $table->string('question');
+            $table->text('answer');
+            $table->json('images')->nullable();
             $table->boolean('status')->default(1);
-            $table->integer('order')->default(0);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

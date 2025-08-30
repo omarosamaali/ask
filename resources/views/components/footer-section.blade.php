@@ -40,144 +40,29 @@
         font-size: 26px;
     }
 
+    #fixedFooter {
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        z-index: 9;
+    }
+
+    @media(max-width:542px) {
+        .container-9zp {
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+    }
+
 </style>
-<div class="footer-35d" id="footer-section">
-    <div class="container-he4">
-        <div class="footer-9z1">
-            <aside class="wid-6bk footer-8vj">
-                <div class="title-opx">
-                    <h4>{{ __('app.quick_links') }}</h4>
-                </div>
-                <div>
-                    <ul id="men-er1">
-                        <li><a href="{{ route('magazines.all-magazines') }}"> {{-- Assuming this links to all magazines --}}
-                                {{ __('app.magazine_pulse') }}</a></li>
-                        <li><a href="{{ route('members.about') }}"> {{-- Assuming this links to 'about us' --}}
-                                {{ __('app.who_we_are') }}</a></li>
-                        <li><a href="{{ route('members.members-list') }}"> {{-- Assuming this links to board members --}}
-                                {{ __('app.board_members_footer') }}</a></li>
-                        <li><a href="{{ route('services.all-services') }}"> {{-- Assuming this links to all services --}}
-                                {{ __('app.services_footer') }}
-                            </a></li>
-                        <li><a href="{{ route('members.committees') }}"> {{-- Assuming this links to committees --}}
-                                {{ __('app.committees_and_councils') }}</a></li>
-                    </ul>
-                </div>
-            </aside>
-            <aside class="wid-6bk footer-8vj">
-                <div class="title-opx">
-                    <h4>{{ __('app.read_more') }}</h4>
-                </div>
-                <div>
-                    <ul id="men-54n">
-                        <li><a href="{{ route('services.show', ['id'=>1]) }}"> {{-- Assuming this links to Es'ad card service --}}
-                                {{ __('app.esaad_card_footer') }}</a></li>
-                        <li><a href="{{ route('services.show', ['id'=>2]) }}"> {{-- Assuming this links to Zakat Fund service --}}
-                                {{ __('app.zakat_fund_footer') }}
-                            </a></li>
-                        <li><a href="{{ route('services.show', ['id'=>3]) }}"> {{-- Assuming this links to Volunteering service --}}
-                                {{ __('app.volunteering_footer') }}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
-            <aside class="wid-6bk footer-8vj wid-jyj">
-                <div class="title-opx">
-                    <h4>{{ __('app.contact_us_footer') }}</h4>
-                </div>
-                <div>
-                    <div class="text-apb">
-                        <i class="fa-solid fa-house icon-custom"></i> <span class="text-o77"> العنوان : {{ $settings?->address }} </span>
 
-                    </div>
-                    <div class="text-apb">
-                        <i class="fa-solid fa-calendar icon-custom"></i> <span class="text-o77"> رقم المكتب : {{ $settings?->office_number }}
-
-
-                        </span>
-                    </div>
-                    <div class="text-apb">
-                        <i class="fa-solid fa-phone-volume icon-custom"></i> <span class="text-o77"> رقم الواتساب : {{ $settings?->whatsapp }}</span>
-
-
-                    </div>
-                    <div class="text-apb">
-                        <i class="fa-solid fa-blender-phone icon-custom"></i> <span class="text-o77">
-                            <a class="stm-qoa" href="mailto:info@uaeca.ae"> البريد الإلكتروني : {{ $settings?->email }}</a>
-                        </span>
-                    </div>
-                    <div class="text-apb">
-                        <i class="fa-solid fa-envelope icon-custom"></i> <span class="text-o77"> 
-                        {{ $settings?->work_days }}
-                        </span>
-                    </div>
-                    <div class="text-apb">
-                        <i class="fa-solid fa-envelope icon-custom"></i> <span class="text-o77">
-                        {{ $settings?->holidays }}
-                        </span>
-                    </div>
-                </div>
-            </aside>
-            <aside class="wid-6bk footer-8vj">
-                <div class="title-opx">
-                    <h4>{{ __('app.subscribe_newsletter') }}</h4>
-                </div>
-                <div class="overlay-7bx"></div>
-                <div id="mai-fcd" class="form-wtb">
-                    <form class="form-wtb">
-                        <input type="hidden" name="data[form_id]" value="1" id="dat-apq">
-                        <input type="hidden" name="token" value="a60da90ff4" id="tok-r9y">
-                        <input type="hidden" name="api_version" value="v1" id="api-ccf">
-                        <input type="hidden" name="endpoint" value="subscribers" id="end-g8r">
-                        <input type="hidden" name="mailpoet_method" value="subscribe" id="mai-goe">
-                        <p class="form-e4y style-h3SVz" id="style-h3SVz">
-                            {{ __('app.newsletter_desc') }}
-                        </p>
-                        <div class="mai-b3r">
-                            <label for="form_email_1" class="text-j65">{{ __('app.email') }}
-                                <span>*</span></label>
-                            <input type="email" class="text-xoe style-KBklM" id="dat-3xg" name="data[form_field_MGU0MzkwOGUyZGZlX2VtYWls]" value="" placeholder="{{ __('app.email_placeholder') }}">
-                        </div>
-                        <div class="mai-b3r las-b87">
-                            <input type="submit" class="mai-7wi style-LFBwk" value="{{ __('app.subscribe_button') }}" id="style-LFBwk">
-                            <span class="loading-t8z"><span class="mai-kfs"></span><span class="mai-wtd"></span><span></span></span>
-                        </div>
-                    </form>
-
-
-                    <ul class="social-set" style="margin-top: 10px;">
-                        <li>
-                            <a class="sociali" href="{{ $settings?->twitter }}" target="_blank" aria-label="Twitter">
-                                <i class="footer-icon fa fa-twitter fa-fw custom-icon" title="Twitter"></i></a></li>
-                        <li><a class="sociali" href="{{ $settings?->instagram }}" target="_blank" aria-label="Instagram">
-                                <i class="footer-icon fa fa-instagram fa-fw custom-icon" title="Instagram"></i></a></li>
-                        <li><a class="sociali" href="{{ $settings?->facebook }}" target="_blank" aria-label="Facebook">
-                                <i style="    left: 0px;
-    top: 1px;" class="footer-icon fa fa-facebook-square fa-fw custom-face" title="Facebook"></i></a></li>
-
-                        <li><a style="
-    top: -5px;
-    position: relative;
-
-" class="sociali" href="{{ $settings?->youtube }}" target="_blank" aria-label="Facebook">
-                                <i style="    left: 0px;
-    top: 1px;" class="footer-icon fa fa-youtube custom-face"></i>
-
-                            </a></li>
-
-                    </ul>
-
-                </div>
-            </aside>
-        </div>
-    </div>
-</div>
-
-<div class="bg_-3kn text-7nf py-sp2 cle-6ew">
+<div class="bg_-3kn text-7nf cle-6ew" id="fixedFooter">
     <div class="container-9zp cle-6ew font-weight-3ik">
         <div class="fs--hoe py-ac9 float-8xn">
-            {{ __('app.all_rights_reserved') }} &copy; {{ date('Y') }} {{-- تم تغيير 2025 إلى دالة date('Y') لجعله ديناميكيًا --}}
+            {{ __('app.all_rights_reserved') }} &copy; {{ date('Y') }}
         </div>
         <div class="fs--hoe py-ac9 float-prj" style="text-transform: uppercase">
             <a href="https://evorq.com/" target="_blank" class="text-7nf" id="kodoLink">

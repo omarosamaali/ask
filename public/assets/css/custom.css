@@ -476,12 +476,6 @@ section {
     position: relative;
 }
 
-@media only screen and (min-width: 768px) {
-    body:not(.layout-admin) section {
-        padding: 100px 0;
-    }
-}
-
 .container-e3z {
     width: 100%;
     padding-right: 15px;

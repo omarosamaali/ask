@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'لوحة تحكم الإدارة')</title>
     <link rel="icon" href="{{ asset('assets/img/Group.png') }}" type="image/x-icon">
-    <link rel="favicon" href="{{ asset('assets/img/Group.png') }}" type="image/x-icon">
+    {{-- <link rel="favicon" href="{{ asset('assets/images/fav.png') }}" type="image/x-icon"> --}}
     <!-- Bootstrap RTL CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -268,8 +268,8 @@
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <div class="logo">
-            <img src="{{ asset('assets/img/Group.png') }}" class="" style="width: 100px;" alt="">
+        <div class="logo" style="justify-content: center; display: flex;">
+            <img src="{{ asset('assets/img/s-logo-ask.png') }}" class="" style="width: 100px;" alt="">
         </div>
 
         <nav class="nav flex-column">
@@ -283,141 +283,12 @@
                 المستخدمين
             </a>
 
+            <a class="nav-link" href="{{ route('admin.faqs.index') }}">
+                <i class="fas fa-question-circle"></i> الأسئلة 
+            </a>
 
-            {{-- قائمة الجمعية --}}
-            @can('isAdmin')
-            <div class="dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-book"></i>
-                    عن الجمعية
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="{{ route('admin.membership.index') }}">
-                            <i class="fas fa-users"></i>
-                            إدخال بيانات العضوية
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('admin.manageMembership.index') }}">
-                            <i class="fas fa-info-circle"></i> العضوية
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('admin.about-us.index') }}">
-                            <i class="fas fa-info-circle"></i> من نحن
-                        </a>
-                    </li>
-                               
-
-                    <li>
-                        <a class="dropdown-item" href="{{ route('admin.member.index') }}">
-                            <i class="fas fa-users"></i> الأعضاء
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('admin.committee.index') }}">
-                            <i class="fas fa-users"></i> اللجان
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('admin.council.index') }}">
-                            <i class="fas fa-users"></i> المجالس
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('admin.event.index') }}">
-                            <i class="fas fa-newspaper"></i> البرامج والفعاليات
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('admin.services.index') }}">
-                            <i class="fas fa-users"></i>
-                            الخدمات
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-            @endcan
-
-            @can('isAdmin')
-            <div class="dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-book"></i>
-                    المركز الإعلامي
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="{{ route('admin.news.index') }}">
-                            <i class="fas fa-newspaper"></i> أخبار الجمعية
-                        </a>
-                        <a class="dropdown-item" href="{{ route('admin.magazines.index') }}">
-                            <i class="fas fa-newspaper"></i> إنجازات الخبرات
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            @endcan
-
-
-            {{-- قائمة الإعدادات --}}
-            @can('isAdmin')
-            <div class="dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-cog"></i>
-                    الإعدادات
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="{{ route('admin.settings.index') }}">
-                            <i class="fas fa-globe"></i>
-                            اعدادات التواصل
-                        </a>
-                    </li>
-                    <li>
-                        {{-- 3. الباقات --}}
-                        <a class="dropdown-item" href="{{ route('admin.packages.index') }}">
-                            <i class="fas fa-box-open"></i> الباقات
-                        </a>
-                    </li>
-                    <li>
-                        {{-- 4. الخطط --}}
-                        <a class="dropdown-item" href="{{ route('admin.plans.index') }}">
-                            <i class="fas fa-clipboard-list"></i> الخطط
-                        </a>
-                    </li>
-                    <li>
-                        {{-- 4. الخطط --}}
-                        <a class="dropdown-item" href="{{ route('sliders.index') }}">
-                            <i class="fas fa-sliders-h"></i> إدارة السلايدر
-                        </a>
-                    </li>
-
-                    {{-- <li>
-                        <a class="dropdown-item" href="{{ route('admin.about-us.index') }}">
-                    <i class="fas fa-info-circle"></i> معلومات عنا
-                    </a>
-                    </li> --}}
-                    <li>
-                        {{-- 11. الأسئلة الشائعة --}}
-                        <a class="dropdown-item" href="{{ route('admin.faqs.index') }}">
-                            <i class="fas fa-question-circle"></i> الأسئلة الشائعة
-                        </a>
-                    </li>
-                    <li>
-                        {{-- 12. البنرات --}}
-                        <a class="dropdown-item" href="{{ route('admin.banners.index') }}">
-                            <i class="fas fa-image"></i> البنرات
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            @endcan
-
-            <a class="nav-link" href="{{ route('admin.chat') }}">
-                <i class="fas fa-message"></i>
-                المراسلات
+            <a class="nav-link" href="{{ route('admin.banners.index') }}">
+                <i class="fas fa-image"></i> البنرات
             </a>
 
             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

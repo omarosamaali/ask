@@ -60,7 +60,7 @@ return [
     'newsletter_desc' => 'قم بمشاركتنا جميع الفعاليات والانشطة عن طريق الاشتراك بالخدمة الإخبارية',
     'email_placeholder' => 'البريد الإلكتروني *', // نص داخل الـ placeholder
     'subscribe_button' => 'اشترك',
-    'all_rights_reserved' => 'كافة الحقوق محفوظة لـ جمعية الإمارات للمتقاعدين',
+    'all_rights_reserved' => 'كافة الحقوق محفوظة للمعلم خالد بن كلبان',
     'developed_by' => 'تم تطويره بواسطة إيفورك للتكنولوجيا',
 
     // Modal section

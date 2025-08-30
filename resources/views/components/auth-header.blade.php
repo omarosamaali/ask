@@ -16,7 +16,7 @@
                 <div class="clouds_four"></div>
             </div>
             <div class="logo">
-                <a href="{{ url('/') }}"><img src="{{ asset('assets/images/new-logo.png') }}" /></a>
+                <a href="{{ url('/') }}"><img src="{{ asset('assets/images/ask-logo.png') }}" /></a>
             </div>
 
             <div id="dl-menu" class="dl-menuwrapper">
