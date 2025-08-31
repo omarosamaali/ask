@@ -125,7 +125,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الأولى</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number">{{ $stageOne }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -135,7 +135,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الثانية</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number"  >{{ $stageTwo }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -146,7 +146,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الثالثة</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number"  >{{ $stageThree }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -157,7 +157,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الرابعة</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number"  >{{ $stageFour }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -170,7 +170,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الخامسة</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number"  >{{ $stageFive }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -180,7 +180,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة السادسة</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number"  >{{ $stageSix }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -191,7 +191,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة السابعة</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number"  >{{ $stageSeven }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -202,7 +202,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الثامنة</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number"  >{{ $stageEight }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -215,7 +215,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة التاسعة</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number"  >{{ $stageNine }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -225,7 +225,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة العاشرة</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number"  >{{ $stageTen }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -236,7 +236,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الحادية عشر</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number"  >{{ $stageEleven }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -247,7 +247,7 @@
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الثانية عشر</div>
                 </div>
-                <div class="number" data-count=" ">0</div>
+                <div class="number"  >{{ $stageTwelve }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
