@@ -9,7 +9,44 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset(path: 'assets/css/custom.css') }}">
     <link rel="icon" href="http://127.0.0.1:8000/assets/img/Group.png" type="image/x-icon">
+<style>
+    .faq-navigation {
+    display: flex; /* لعرض الأزرار جنب بعض */
+    justify-content: center; /* لتوسيط الأزرار */
+    gap: 15px; /* مسافة بين الأزرار */
+    margin-top: 30px; /* مسافة من أعلى */
+    }
 
+    .faq-navigation .btn-primary {
+    padding: 12px 25px; /* حجم داخلي مريح */
+    border-radius: 8px; /* حواف دائرية ناعمة */
+    font-size: 16px; /* حجم خط مناسب */
+    font-weight: bold; /* خط عريض */
+    text-decoration: none; /* إزالة خط الرابط */
+    color: #fff; /* لون الخط أبيض */
+    background-color: #007bff; /* لون أزرق جذاب */
+    border: none; /* إزالة الحدود */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* تأثيرات عند التفاعل */
+    cursor: pointer; /* شكل المؤشر على شكل يد */
+    }
+
+    /* تأثير التفاعل (Hover) */
+    .faq-navigation .btn-primary:hover {
+    background-color: #0056b3; /* لون أزرق أغمق عند المرور بالماوس */
+    transform: translateY(-2px); /* حركة بسيطة للأعلى */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+    }
+
+    /* حالة الزر المعطل (Disabled) */
+    .faq-navigation button[disabled] {
+    background-color: #ccc; /* لون رمادي باهت */
+    cursor: not-allowed; /* تغيير شكل المؤشر */
+    opacity: 0.7; /* شفافية خفيفة */
+    transform: none; /* إلغاء أي تأثير حركي */
+    box-shadow: none; /* إلغاء الظل */
+    }
+
+</style>
 </head>
 
 <body ng-app="myApp">
@@ -50,6 +87,21 @@
                     لا توجد أسئلة شائعة حاليًا.
                 </div>
                 @endisset
+<div class="faq-navigation">
+    {{-- الزر السابق --}}
+    @if ($prevFaqId)
+    <a href="{{ route('faq.show', ['id' => $prevFaqId]) }}" class="btn btn-primary">السابق</a>
+    @else
+    <button class="btn btn-primary" disabled>السابق</button>
+    @endif
+
+    {{-- الزر التالي --}}
+    @if ($nextFaqId)
+    <a href="{{ route('faq.show', ['id' => $nextFaqId]) }}" class="btn btn-primary">التالي</a>
+    @else
+    <button class="btn btn-primary" disabled>التالي</button>
+    @endif
+</div>
 
                 </div>
             </div>

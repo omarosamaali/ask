@@ -6,15 +6,32 @@ use App\Http\Controllers\Auth\LoginControllerUser;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Faq;
 
+
 Route::get('faq/{id}', function ($id) {
-    // Find a single FAQ item by its ID where the status is 1.
-    // The variable is now named $faq, which is more accurate.
-    $faq = Faq::where('status', 1)->findOrFail($id);
+    // إيجاد السؤال الحالي أو عرض خطأ 404 إذا لم يوجد
+    $currentFaq = Faq::where('status', 1)->findOrFail($id);
 
-    // Pass the single $faq object to the view.
-    return view('faq', compact('faq'));
-})->name('faq');
+    // إيجاد السؤال التالي:
+    // ابحث عن أول سؤال نشط بمعرّف أكبر من المعرّف الحالي
+    $nextFaq = Faq::where('status', 1)
+        ->where('id', '>', $currentFaq->id)
+        ->orderBy('id', 'asc')
+        ->first();
 
+    // إيجاد السؤال السابق:
+    // ابحث عن آخر سؤال نشط بمعرّف أصغر من المعرّف الحالي
+    $prevFaq = Faq::where('status', 1)
+        ->where('id', '<', $currentFaq->id)
+        ->orderBy('id', 'desc')
+        ->first();
+
+    // إرسال السؤال الحالي، والسؤال التالي والسابق (إذا وُجدا) إلى الـ view
+    return view('faq', [
+        'faq' => $currentFaq,
+        'nextFaqId' => $nextFaq ? $nextFaq->id : null,
+        'prevFaqId' => $prevFaq ? $prevFaq->id : null,
+    ]);
+})->name('faq.show');
 // Route::get('faq/{id}', function ($id) {
 //     $faq = Faq::where('status', 1)->findOrFail($id);
 //     return view('faq_single', compact('faq'));
