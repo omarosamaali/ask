@@ -6,10 +6,19 @@ use App\Http\Controllers\Auth\LoginControllerUser;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Faq;
 
-Route::get('faq', function () {
-    $faqs = Faq::where('status', 1)->get();
-    return view('faq',  compact('faqs'));
+Route::get('faq/{id}', function ($id) {
+    // Find a single FAQ item by its ID where the status is 1.
+    // The variable is now named $faq, which is more accurate.
+    $faq = Faq::where('status', 1)->findOrFail($id);
+
+    // Pass the single $faq object to the view.
+    return view('faq', compact('faq'));
 })->name('faq');
+
+// Route::get('faq/{id}', function ($id) {
+//     $faq = Faq::where('status', 1)->findOrFail($id);
+//     return view('faq_single', compact('faq'));
+// })->name('faq.single');
 
 Route::get('/', function () {
     return view('welcome');

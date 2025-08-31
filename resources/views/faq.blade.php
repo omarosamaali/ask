@@ -19,52 +19,38 @@
         <div class="container">
             <div class="faq-container">
                 <div id="faq-list">
-                    @if($faqs->isEmpty())
-                    <div class="no-faqs">
-                        <i class="fas fa-question-circle"></i>
-                        لا توجد أسئلة شائعة حاليًا.
-                    </div>
-                    @else
-                    <div class="faq-slider-container">
-                        <div id="faq-slides">
-                            @foreach($faqs as $index => $faq)
-                            <div class="faq-slide {{ $index == 0 ? 'active' : '' }}" data-index="{{ $index }}">
-                                <div class="faq-question-text">{{ $faq->question }}</div>
-                                <div class="faq-answer-text">{{ $faq->answer }}</div>
-                                @if ($faq->images)
-                                <h6 class="mt-4 mb-3">الصور المرفقة:</h6>
-                                <div class="images-container">
-                                    @php
-                                    $images = json_decode($faq->images, true);
-                                    @endphp
-                                    @if(is_array($images) && count($images) > 0)
-                                    @foreach($images as $image)
-                                    <img src="{{ asset('storage/' . $image) }}" alt="FAQ Image" class="image-preview">
-                                    @endforeach
-                                    @else
-                                    <p class="text-muted">لا توجد صور مرفقة.</p>
-                                    @endif
-                                </div>
-                                @endif
-                            </div>
-                            @endforeach
-                        </div>
+                {{-- Check if the $faq variable exists before trying to display it --}}
+                @isset($faq)
+                <div class="faq-slider-container">
+                    <div id="faq-slides">
+                        <div class="faq-slide active">
+                            <div class="faq-question-text">{{ $faq->question }}</div>
+                            <div class="faq-answer-text">{{ $faq->answer }}</div>
+                            {{-- Check for images --}}
+                                                           <div class="images-container">
+                                                               @php
+                                                               $images = json_decode($faq->images, true);
+                                                               @endphp
+                                                               @if(is_array($images) && count($images) > 0)
+                                                               @foreach($images as $image)
+                                                               <img src="{{ asset('storage/' . $image) }}" alt="FAQ Image" class="image-preview">
+                                                               @endforeach
+                                                               @else
+                                                               <p class="text-muted">لا توجد صور مرفقة.</p>
+                                                               @endif
+                                                           </div>
 
-                        <div class="navigation-controls">
-                            <button class="nav-btn" id="prevBtn">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
 
-                            <div class="counter">
-                                <span id="currentSlide">1</span> من <span id="totalSlides">{{ $faqs->count() }}</span>
-                            </div>
-
-                            <button class="nav-btn" id="nextBtn">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
                         </div>
                     </div>
-                    @endif
+                </div>
+                @else
+                <div class="no-faqs">
+                    <i class="fas fa-question-circle"></i>
+                    لا توجد أسئلة شائعة حاليًا.
+                </div>
+                @endisset
+
                 </div>
             </div>
         </div>

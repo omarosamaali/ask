@@ -49,7 +49,6 @@
         color: #333;
         margin-bottom: 20px;
         font-weight: 700;
-
     }
 
     .welcome-section p {
@@ -68,30 +67,72 @@
         justify-content: center;
         display: flex;
         transition: .5s;
-    }
-
-    .icon.first i {
-        background: rgb(48 126 243 / 10%);
-        color: rgb(48 126 243);
+        border-radius: 8px;
     }
 
     .stats-card:hover i {
         transform: rotateY(180deg);
     }
 
-    .icon.second i {
-        background: rgb(83 166 83 / 10%);
-        color: rgb(83 166 83);
-    }
-
-    .icon.third i {
+    /* ألوان مختلفة لكل مرحلة */
+    .icon.stage-1 i {
         background: rgb(48 126 243 / 10%);
         color: rgb(48 126 243);
     }
 
-    .icon.fourth i {
-        background: #ffa50078;
-        color: #ff1f00;
+    .icon.stage-2 i {
+        background: rgb(83 166 83 / 10%);
+        color: rgb(83 166 83);
+    }
+
+    .icon.stage-3 i {
+        background: rgb(255 165 0 / 10%);
+        color: rgb(255 140 0);
+    }
+
+    .icon.stage-4 i {
+        background: rgb(220 20 60 / 10%);
+        color: rgb(220 20 60);
+    }
+
+    .icon.stage-5 i {
+        background: rgb(138 43 226 / 10%);
+        color: rgb(138 43 226);
+    }
+
+    .icon.stage-6 i {
+        background: rgb(30 144 255 / 10%);
+        color: rgb(30 144 255);
+    }
+
+    .icon.stage-7 i {
+        background: rgb(255 69 0 / 10%);
+        color: rgb(255 69 0);
+    }
+
+    .icon.stage-8 i {
+        background: rgb(50 205 50 / 10%);
+        color: rgb(50 205 50);
+    }
+
+    .icon.stage-9 i {
+        background: rgb(255 20 147 / 10%);
+        color: rgb(255 20 147);
+    }
+
+    .icon.stage-10 i {
+        background: rgb(64 224 208 / 10%);
+        color: rgb(64 224 208);
+    }
+
+    .icon.stage-11 i {
+        background: rgb(255 215 0 / 10%);
+        color: rgb(218 165 32);
+    }
+
+    .icon.stage-12 i {
+        background: rgb(72 61 139 / 10%);
+        color: rgb(72 61 139);
     }
 
     .container-top {
@@ -121,7 +162,7 @@
     <div class="row g-3">
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-1 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الأولى</div>
                 </div>
@@ -131,33 +172,33 @@
         </div>
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-2 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الثانية</div>
                 </div>
-                <div class="number"  >{{ $stageTwo }}</div>
+                <div class="number">{{ $stageTwo }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
 
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-3 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الثالثة</div>
                 </div>
-                <div class="number"  >{{ $stageThree }}</div>
+                <div class="number">{{ $stageThree }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
 
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-4 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الرابعة</div>
                 </div>
-                <div class="number"  >{{ $stageFour }}</div>
+                <div class="number">{{ $stageFour }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -166,43 +207,43 @@
     <div class="row g-3">
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-5 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الخامسة</div>
                 </div>
-                <div class="number"  >{{ $stageFive }}</div>
+                <div class="number">{{ $stageFive }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-6 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة السادسة</div>
                 </div>
-                <div class="number"  >{{ $stageSix }}</div>
+                <div class="number">{{ $stageSix }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
 
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-7 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة السابعة</div>
                 </div>
-                <div class="number"  >{{ $stageSeven }}</div>
+                <div class="number">{{ $stageSeven }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
 
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-8 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الثامنة</div>
                 </div>
-                <div class="number"  >{{ $stageEight }}</div>
+                <div class="number">{{ $stageEight }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
@@ -211,49 +252,47 @@
     <div class="row g-3">
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-9 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة التاسعة</div>
                 </div>
-                <div class="number"  >{{ $stageNine }}</div>
+                <div class="number">{{ $stageNine }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-10 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة العاشرة</div>
                 </div>
-                <div class="number"  >{{ $stageTen }}</div>
+                <div class="number">{{ $stageTen }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
 
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-11 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الحادية عشر</div>
                 </div>
-                <div class="number"  >{{ $stageEleven }}</div>
+                <div class="number">{{ $stageEleven }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
 
         <div class="col-12 col-md">
             <div class="stats-card">
-                <div class="icon first container-top">
+                <div class="icon stage-12 container-top">
                     <i class="fa-solid fa-book"></i>
                     <div class="label">المرحلة الثانية عشر</div>
                 </div>
-                <div class="number"  >{{ $stageTwelve }}</div>
+                <div class="number">{{ $stageTwelve }}</div>
                 <p class="text-muted">عدد الأسئلة</p>
             </div>
         </div>
     </div>
-
 </div>
-
 
 @endsection
