@@ -16,12 +16,13 @@ body {
   text-align: center;
   margin: auto;
   width: 100%;
+  z-index: 9;
 }
 
 .footer span {
   font-size: 12px;
   font-weight: bold;
-  color: #002e6d;
+  color: #ffffff !important;
 }
 
 @media (max-width: 767px) {

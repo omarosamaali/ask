@@ -16,23 +16,17 @@
     <meta property="og:description"
         content="مساعدك الذكي الذي يجيب على أسئلتك بمرونة ودقة لـ الدراسات الاجتماعية و التربية الوطنية......">
     <link rel="shortcut icon" href="assets/images/fav.png">
-    
-    <script src="https://app.esalkhaled.com/js/min/jquery.min.js"></script>
-    <script id="sbinit" src="https://app.esalkhaled.com/js/main.js"></script>
 
-    
+    {{-- <script id="chat-init" src="https://cloud.board.support/account/js/init.js?id=1265014697"></script> --}}
+    <script>
+        setTimeout(() => {
+            window.location.href = 'https://app.esalkhaled.com/test.php'
+        }, 10000);
+    </script>
 </head>
 
-<body style="background-color: #dadada;">
+<body style="background-color: #002e6d;">
     <x-guest-header></x-guest-header>
-
-
-
-    <footer class="footer">
-        <!-- Evorq -->
-        <span>قد يرتكب الذكاء الإصطناعي إسال خالد أخطاءً. تحقق من المعلومات المهمة.</span>
-    </footer>
-
 </body>
 
 </html>

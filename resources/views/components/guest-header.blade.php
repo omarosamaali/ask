@@ -9,6 +9,7 @@
         position: fixed;
         width: 100%;
         top: 0px;
+        height: 100%;
         z-index: 9;
     }
 
